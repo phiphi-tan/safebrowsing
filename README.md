@@ -14,75 +14,92 @@ This **README.md** is a quickstart guide on how to build, deploy, and use the
 `safebrowsing` Go package. It can be used out-of-the-box. The GoDoc and API
 documentation provide more details on fine tuning the parameters if desired.
 
-
 # Setup
 
-To use the `safebrowsing` Go package you must obtain an *API key* from the
+To use the `safebrowsing` Go package you must obtain an _API key_ from the
 [Google Developer Console](https://console.developers.google.com/). For more
-information, see the *Get Started* section of the Google Safe Browsing APIs (v4)
+information, see the _Get Started_ section of the Google Safe Browsing APIs (v4)
 documentation.
-
 
 # How to Build
 
 To download and install from the source, run the following command:
 
-```
+```bash
+go install
 go get github.com/google/safebrowsing
 ```
 
-The programs below execute from your `$GOPATH/bin` folder. 
+The programs below execute from your `$GOPATH/bin` folder.
 Add that to your `$PATH` for convenience:
 
 ```
 export PATH=$PATH:$GOPATH/bin
 ```
 
-
 # Proxy Server
 
 The `sbserver` server binary runs a Safe Browsing API lookup proxy that allows
 users to check URLs via a simple JSON API.
 
-1.	Once the Go environment is setup, run the following command with your API key:
+1.  Once the Go environment is setup, run the following command with your API key:
 
-	```
-	go get github.com/google/safebrowsing/cmd/sbserver
-	sbserver -apikey $APIKEY
-	```
+    ```bash
+    go install github.com/google/safebrowsing/cmd/sbserver@latest
+    # go get github.com/google/safebrowsing/cmd/sbserver / # OLD COMMAND, DEPRECATED
+    sbserver -apikey $APIKEY
+    ```
 
-	With the default settings this will start a local server at **127.0.0.1:8080**.
+    With the default settings this will start a local server at **127.0.0.1:8080**.
 
-2.  The server also uses an URL redirector (listening on `/r`) to show an interstitial for anything marked unsafe.  
-If the URL is safe, the client is automatically redirected to the target. Else, an interstitial warning page is shown as recommended by Safe Browsing.  
-Try these URLs:
+<!-- 2.  The server also uses an URL redirector (listening on `/r`) to show an interstitial for anything marked unsafe.
+    If the URL is safe, the client is automatically redirected to the target. Else, an interstitial warning page is shown as recommended by Safe Browsing.
+    Try these URLs:
 
-	```
-	127.0.0.1:8080/r?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/
-	127.0.0.1:8080/r?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/SOCIAL_ENGINEERING/URL/
-	127.0.0.1:8080/r?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/UNWANTED_SOFTWARE/URL/
-	127.0.0.1:8080/r?url=http://www.google.com/
-	```
+        ```
+        127.0.0.1:8080/r?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/
+        127.0.0.1:8080/r?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/SOCIAL_ENGINEERING/URL/
+        127.0.0.1:8080/r?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/UNWANTED_SOFTWARE/URL/
+        127.0.0.1:8080/r?url=http://www.google.com/
+        ``` -->
 
-3.	The server also has a lightweight implementation of the API v4 threatMatches endpoint.  
-To use the local proxy server to check a URL, send a POST request to `127.0.0.1:8080/v4/threatMatches:find` with the following JSON body:
+<!-- 2.  The server also has a lightweight implementation of the API v4 threatMatches endpoint.
+    To use the local proxy server to check a URL, send a POST request to `127.0.0.1:8080/v4/threatMatches:find` with the following JSON body:
 
-	```json
-	{
-		"threatInfo": {
-			"threatTypes":      ["UNWANTED_SOFTWARE", "MALWARE"],
-			"platformTypes":    ["ANY_PLATFORM"],
-			"threatEntryTypes": ["URL"],
-			"threatEntries": [
-				{"url": "google.com"},
-				{"url": "http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/"}
-			]
-		}
-	}
-	```
+        ```json
+        {
+        	"threatInfo": {
+        		"threatTypes":      ["UNWANTED_SOFTWARE", "MALWARE"],
+        		"platformTypes":    ["ANY_PLATFORM"],
+        		"threatEntryTypes": ["URL"],
+        		"threatEntries": [
+        			{"url": "google.com"},
+        			{"url": "http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/"}
+        		]
+        	}
+        }
+        ```
 
-	Refer to the [Google Safe Browsing APIs (v4)](https://developers.google.com/safe-browsing/v4/) for the format of the JSON request.
+        Refer to the [Google Safe Browsing APIs (v4)](https://developers.google.com/safe-browsing/v4/) for the format of the JSON request. -->
 
+2. Local Safe Browsing URL Checker
+
+   This Python script checks URLsusing the local Safe Browsing proxy (sbserver).
+
+   > Active threat categories: SOCIAL_ENGINEERING (phishing)  
+   > Inactive threat categories: MALWARE, UNWANTED_SOFTWARE
+
+   Output: Prints Safe or Unsafe for each URL
+
+   Usage:
+
+   ```bash
+   # Single URL
+   python scripts/url_checker.py --url http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/
+
+   # Batch of URLs
+   python scripts/url_checker.py --file scripts/test_urls.txt
+   ```
 
 # Command-Line Lookup
 
@@ -96,8 +113,8 @@ $ echo "http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/" | s
   Unsafe URL found:  http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/ [{testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/ {MALWARE ANY_PLATFORM URL}}]
 ```
 
-
 # Safe Browsing System Test
+
 To perform an end-to-end test on the package with the Safe Browsing backend,
 run the following command:
 
