@@ -65,10 +65,10 @@ users to check URLs via a simple JSON API.
     Usage:
 
     ```bash
-    python script.py --url <single_url>  # Look up a single URL
-    python script.py --file <file_path>  # Look up URLs from a file (one per line)
+    python ./scripts/auto_blacklist.py --url <single_url>  # Look up a single URL
+    python ./scripts/auto_blacklist.py --file <file_path>  # Look up URLs from a file (one per line)
 
-    python script.py --url http://example.com \
+    python ./scripts/auto_blacklist.py --url http://example.com \
                  --poll_interval 60 # optional: polling interval (in minutes), default = 1hr
                  --poll_timeout 100 # optional: polling timeout (in minutes), default = 14 days
                  --srvaddr 127.0.0.1:8080 # REQUIRED
