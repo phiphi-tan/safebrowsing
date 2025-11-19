@@ -30,7 +30,6 @@ PLATFORM_TYPES = ["ANY_PLATFORM"]
 THREAT_ENTRY_TYPES = ["URL"]
 
 API_ADDR = f'{os.getenv('GOOGLE_SAFE_BROWSING_API')}?key={os.getenv('GOOGLE_SAFE_BROWSING_KEY')}'
-LOCAL_SVR_ADDR = f'{os.getenv('LOCAL_ADDRESS')}'
 # -----------
 
 async def lookup(url, server_addr):
@@ -111,8 +110,10 @@ async def main():
     parser.add_argument("--file")
     parser.add_argument("--poll_interval",type=float,default=60,help="Polling interval in minutes (default: 60)")
     parser.add_argument("--poll_timeout",type=float,default=14*24*60,help="Polling timeout in minutes (default: 14 days)")
-
+    parser.add_argument("--srvaddr", required=True)
     args = parser.parse_args()
+
+    LOCAL_SVR_ADDR = f'http://{args.srvaddr}/v4/threatMatches:find'
 
     url_list = get_urls(args.url, args.file)
     if not url_list:

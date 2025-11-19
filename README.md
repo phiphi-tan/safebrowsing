@@ -47,7 +47,7 @@ users to check URLs via a simple JSON API.
     ```bash
     go install github.com/google/safebrowsing/cmd/sbserver@latest
     # go get github.com/google/safebrowsing/cmd/sbserver / # OLD COMMAND, DEPRECATED
-    sbserver -apikey $APIKEY
+    sbserver -apikey $APIKEY -srvaddr 127.0.0.1:8080 # change srvaddr as necessary
     ```
 
     With the default settings this will start a local server at **127.0.0.1:8080**.
@@ -71,7 +71,10 @@ users to check URLs via a simple JSON API.
     python script.py --url http://example.com \
                  --poll_interval 60 # optional: polling interval (in minutes), default = 1hr
                  --poll_timeout 100 # optional: polling timeout (in minutes), default = 14 days
+                 --srvaddr 127.0.0.1:8080 # REQUIRED
     ```
+
+    > Do note that the server address flag has to be set to the same address as the local GoogleSafeBrowsing server, or else local lookups will fail
 
 # Command-Line Lookup
 
