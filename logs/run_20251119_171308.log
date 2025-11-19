@@ -1,0 +1,7 @@
+2025-11-19 17:13:09 [INFO] [LOOKUP] Looking up http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/ in https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU
+2025-11-19 17:13:10 [INFO] HTTP Request: POST https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU "HTTP/1.1 200 OK"
+2025-11-19 17:13:10 [INFO] [LOOKUP RESULT]: No matching URL found
+2025-11-19 17:13:12 [INFO] [SUBMIT] Submission for http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/ was successful.
+2025-11-19 17:13:12 [INFO] [LOOKUP] Looking up http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:13:12 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:13:12 [INFO] [POLL COMPLETE] URL http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/ now exists in blacklist: {'matches': [{'threatType': 'MALWARE', 'platformType': 'ANY_PLATFORM', 'threatEntryType': 'URL', 'threat': {'url': 'http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/'}}]}

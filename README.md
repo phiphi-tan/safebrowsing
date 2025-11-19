@@ -51,55 +51,27 @@ users to check URLs via a simple JSON API.
     ```
 
     With the default settings this will start a local server at **127.0.0.1:8080**.
+    You can also change the address via the `-srvaddr` flag
 
-<!-- 2.  The server also uses an URL redirector (listening on `/r`) to show an interstitial for anything marked unsafe.
-    If the URL is safe, the client is automatically redirected to the target. Else, an interstitial warning page is shown as recommended by Safe Browsing.
-    Try these URLs:
+2.  Automated URL Blacklist Submission
 
-        ```
-        127.0.0.1:8080/r?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/
-        127.0.0.1:8080/r?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/SOCIAL_ENGINEERING/URL/
-        127.0.0.1:8080/r?url=http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/UNWANTED_SOFTWARE/URL/
-        127.0.0.1:8080/r?url=http://www.google.com/
-        ``` -->
+    This script asynchronously looks up URLs against the online GoogleSafeBrowsing database, submits missing URLs, and polls a local server for updates.
 
-<!-- 2.  The server also has a lightweight implementation of the API v4 threatMatches endpoint.
-    To use the local proxy server to check a URL, send a POST request to `127.0.0.1:8080/v4/threatMatches:find` with the following JSON body:
+    > Active threat categories: SOCIAL_ENGINEERING (phishing)  
+    > Inactive threat categories: MALWARE, UNWANTED_SOFTWARE
 
-        ```json
-        {
-        	"threatInfo": {
-        		"threatTypes":      ["UNWANTED_SOFTWARE", "MALWARE"],
-        		"platformTypes":    ["ANY_PLATFORM"],
-        		"threatEntryTypes": ["URL"],
-        		"threatEntries": [
-        			{"url": "google.com"},
-        			{"url": "http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/"}
-        		]
-        	}
-        }
-        ```
+    Logs: Automatically saved in `./logs` directory
 
-        Refer to the [Google Safe Browsing APIs (v4)](https://developers.google.com/safe-browsing/v4/) for the format of the JSON request. -->
+    Usage:
 
-2. Local Safe Browsing URL Checker
+    ```bash
+    python script.py --url <single_url>  # Look up a single URL
+    python script.py --file <file_path>  # Look up URLs from a file (one per line)
 
-   This Python script checks URLsusing the local Safe Browsing proxy (sbserver).
-
-   > Active threat categories: SOCIAL_ENGINEERING (phishing)  
-   > Inactive threat categories: MALWARE, UNWANTED_SOFTWARE
-
-   Output: Prints Safe or Unsafe for each URL
-
-   Usage:
-
-   ```bash
-   # Single URL
-   python scripts/url_checker.py --url http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/
-
-   # Batch of URLs
-   python scripts/url_checker.py --file scripts/test_urls.txt
-   ```
+    python script.py --url http://example.com \
+                 --poll_interval 60 # optional: polling interval (in minutes), default = 1hr
+                 --poll_timeout 100 # optional: polling timeout (in minutes), default = 14 days
+    ```
 
 # Command-Line Lookup
 

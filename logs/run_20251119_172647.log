@@ -1,0 +1,77 @@
+2025-11-19 17:26:48 [INFO] [LOOKUP] Looking up http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/ in https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU
+2025-11-19 17:26:49 [INFO] HTTP Request: POST https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU "HTTP/1.1 200 OK"
+2025-11-19 17:26:49 [INFO] [LOOKUP MISS]: No match for http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/
+2025-11-19 17:26:51 [INFO] [SUBMIT SUCCESS] Submission for http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/ was successful.
+2025-11-19 17:26:51 [INFO] [LOOKUP] Looking up http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/SOCIAL_ENGINEERING/URL/ in https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU
+2025-11-19 17:26:51 [INFO] [LOOKUP] Looking up http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:26:52 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:26:52 [INFO] [POLL COMPLETE] URL http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/ now exists in blacklist: {'matches': [{'threatType': 'MALWARE', 'platformType': 'ANY_PLATFORM', 'threatEntryType': 'URL', 'threat': {'url': 'http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/'}}]}
+2025-11-19 17:26:52 [INFO] HTTP Request: POST https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU "HTTP/1.1 200 OK"
+2025-11-19 17:26:52 [INFO] [LOOKUP HIT] http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/SOCIAL_ENGINEERING/URL/ already exists
+2025-11-19 17:26:52 [INFO] [LOOKUP] Looking up http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/UNWANTED_SOFTWARE/URL/ in https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU
+2025-11-19 17:26:52 [INFO] HTTP Request: POST https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU "HTTP/1.1 200 OK"
+2025-11-19 17:26:52 [INFO] [LOOKUP MISS]: No match for http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/UNWANTED_SOFTWARE/URL/
+2025-11-19 17:26:54 [INFO] [SUBMIT SUCCESS] Submission for http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/UNWANTED_SOFTWARE/URL/ was successful.
+2025-11-19 17:26:54 [INFO] [LOOKUP] Looking up http://www.google.com/ in https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU
+2025-11-19 17:26:54 [INFO] [LOOKUP] Looking up http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/UNWANTED_SOFTWARE/URL/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:26:55 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:26:55 [INFO] [POLL COMPLETE] URL http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/UNWANTED_SOFTWARE/URL/ now exists in blacklist: {'matches': [{'threatType': 'UNWANTED_SOFTWARE', 'platformType': 'ANY_PLATFORM', 'threatEntryType': 'URL', 'threat': {'url': 'http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/UNWANTED_SOFTWARE/URL/'}}]}
+2025-11-19 17:26:55 [INFO] HTTP Request: POST https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU "HTTP/1.1 200 OK"
+2025-11-19 17:26:55 [INFO] [LOOKUP MISS]: No match for http://www.google.com/
+2025-11-19 17:26:57 [INFO] [SUBMIT SUCCESS] Submission for http://www.google.com/ was successful.
+2025-11-19 17:26:57 [INFO] [LOOKUP] Looking up http://malicious-website.com/ in https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU
+2025-11-19 17:26:57 [INFO] [LOOKUP] Looking up http://www.google.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:26:58 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:26:58 [INFO] HTTP Request: POST https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU "HTTP/1.1 200 OK"
+2025-11-19 17:26:58 [INFO] [LOOKUP MISS]: No match for http://malicious-website.com/
+2025-11-19 17:27:00 [INFO] [SUBMIT SUCCESS] Submission for http://malicious-website.com/ was successful.
+2025-11-19 17:27:00 [INFO] [LOOKUP] Looking up http://malicious-website2.com/ in https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU
+2025-11-19 17:27:00 [INFO] [LOOKUP] Looking up http://malicious-website.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:00 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:01 [INFO] HTTP Request: POST https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU "HTTP/1.1 200 OK"
+2025-11-19 17:27:01 [INFO] [LOOKUP MISS]: No match for http://malicious-website2.com/
+2025-11-19 17:27:03 [INFO] [SUBMIT SUCCESS] Submission for http://malicious-website2.com/ was successful.
+2025-11-19 17:27:03 [INFO] [LOOKUP] Looking up http://malicious-website3.com/ in https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU
+2025-11-19 17:27:03 [INFO] [LOOKUP] Looking up http://malicious-website2.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:03 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:03 [INFO] HTTP Request: POST https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyCsubCo9JXENITV6sQzvn7d8DRDwI5w3TU "HTTP/1.1 200 OK"
+2025-11-19 17:27:03 [INFO] [LOOKUP MISS]: No match for http://malicious-website3.com/
+2025-11-19 17:27:04 [INFO] [LOOKUP] Looking up http://www.google.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:04 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:06 [INFO] [SUBMIT SUCCESS] Submission for http://malicious-website3.com/ was successful.
+2025-11-19 17:27:06 [INFO] [LOOKUP] Looking up http://malicious-website3.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:06 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:07 [INFO] [LOOKUP] Looking up http://malicious-website.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:07 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:09 [INFO] [LOOKUP] Looking up http://malicious-website2.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:10 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:10 [INFO] [LOOKUP] Looking up http://www.google.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:10 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:12 [INFO] [LOOKUP] Looking up http://malicious-website3.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:12 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:13 [INFO] [LOOKUP] Looking up http://malicious-website.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:13 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:16 [INFO] [LOOKUP] Looking up http://malicious-website2.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:16 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:16 [INFO] [LOOKUP] Looking up http://www.google.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:16 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:18 [INFO] [LOOKUP] Looking up http://malicious-website3.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:19 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:19 [INFO] [LOOKUP] Looking up http://malicious-website.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:19 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:22 [INFO] [LOOKUP] Looking up http://malicious-website2.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:22 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:23 [INFO] [LOOKUP] Looking up http://www.google.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:23 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:25 [INFO] [LOOKUP] Looking up http://malicious-website3.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:25 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:25 [INFO] [LOOKUP] Looking up http://malicious-website.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:26 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:28 [INFO] [LOOKUP] Looking up http://malicious-website2.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:29 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:29 [INFO] [POLL INCOMPLETE] Timeout reached. URL http://www.google.com/ not in blacklist.
+2025-11-19 17:27:31 [INFO] [LOOKUP] Looking up http://malicious-website3.com/ in http://127.0.0.1:8080/v4/threatMatches:find
+2025-11-19 17:27:31 [INFO] HTTP Request: POST http://127.0.0.1:8080/v4/threatMatches:find "HTTP/1.1 200 OK"
+2025-11-19 17:27:32 [INFO] [POLL INCOMPLETE] Timeout reached. URL http://malicious-website.com/ not in blacklist.
+2025-11-19 17:27:35 [INFO] [POLL INCOMPLETE] Timeout reached. URL http://malicious-website2.com/ not in blacklist.
+2025-11-19 17:27:37 [INFO] [POLL INCOMPLETE] Timeout reached. URL http://malicious-website3.com/ not in blacklist.
