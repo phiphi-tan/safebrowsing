@@ -7,7 +7,10 @@ from datetime import datetime, timezone
 import httpx
 
 from playwright.async_api import async_playwright, TimeoutError
+from playwright_stealth import Stealth
+
 import asyncio
+import random
 
 import logging
 os.makedirs("logs", exist_ok=True)
@@ -30,6 +33,8 @@ PLATFORM_TYPES = ["ANY_PLATFORM"]
 THREAT_ENTRY_TYPES = ["URL"]
 
 API_ADDR = f'{os.getenv('GOOGLE_SAFE_BROWSING_API')}?key={os.getenv('GOOGLE_SAFE_BROWSING_KEY')}'
+
+PROFILE_DIR = "./chrome_profile"   # ← fresh profile folder
 # -----------
 
 async def lookup(url, server_addr):
@@ -53,30 +58,58 @@ async def lookup(url, server_addr):
         data = response.json()
         return data
   
-async def submit(browser, url, submit_wait=1, timeout=3000):
-    context = await browser.new_context()
+async def submit(browser, url, context=None, submit_wait=1, attempts=3, timeout=3000):
+
+    if context is None:
+        # context = await browser.new_context()
+        context = await browser.new_context(locale="en-US")
+        # context = await browser.new_context(locale="zh-CN")
+
     page = await context.new_page()
+    # page.on("response", lambda r: print("Response:", r.url, r.status))
+
     await page.goto(os.getenv('GOOGLE_REPORT_URL'), timeout=10000)  
     await page.click("#mat-select-0")
     await page.wait_for_selector("mat-option")
     options = await page.query_selector_all("mat-option")
     for option in options:
         text = (await option.text_content() or "").strip()
-        if text == "This page is not safe":
+        if text == "This page is not safe" or text == "此网页很安全":
             await option.click()
             break
     url_input = "#mat-input-0"
+
+    await asyncio.sleep(random.uniform(0, 1))
+    await page.mouse.move(100, 200)
+
+    await asyncio.sleep(random.uniform(0, 1))
     await page.wait_for_selector(url_input, state="visible")
+
+    await asyncio.sleep(random.uniform(0, 1))
     await page.fill(url_input, url)
-    await page.click(".form-submit-button")
+    
+    button = page.locator(".form-submit-button")
+    await button.wait_for(state="visible")
+    await asyncio.sleep(random.uniform(0, 1))
+    await button.click()
     await asyncio.sleep(submit_wait)
+
+    for i in range(1, attempts + 1):
+        if await button.is_enabled() and await button.is_visible():
+            await asyncio.sleep(random.uniform(i, i*2))
+            await button.click()
+            await asyncio.sleep(submit_wait)
+
+        else:
+            break
+    await page.close()
+    await asyncio.sleep(2)
     # try: 
     #     await page.wait_for_selector("text=Submission was successful.", timeout=timeout)
     # except TimeoutError:
     #     await context.close()
     #     return False
     
-    await context.close()
     return True
 
     
@@ -119,8 +152,20 @@ async def main():
     if not url_list:
         parser.error("No URLs provided. Use --url or --file.")
 
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+    async with Stealth().use_async(async_playwright()) as p:
+        # browser = await p.chromium.launch(
+        #     channel='chrome',
+        #     headless=False,
+        #     args=["--disable-blink-features=AutomationControlled"]
+        # )
+        context = await p.chromium.launch_persistent_context(
+            user_data_dir=PROFILE_DIR,
+            # locale="zh-CN",
+            # locale="en-SG",
+            channel='chrome',
+            headless=False,
+            args=["--disable-blink-features=AutomationControlled"]
+        )
         poll_tasks = []
 
         for url in url_list:
@@ -136,7 +181,8 @@ async def main():
 
             # URL does not exist, submit URL
             logging.info(f'[LOOKUP MISS]: No match for {url}')
-            submission_status = await submit(browser, url)
+            # submission_status = await submit(browser, url)
+            submission_status = await submit(None, url, context=context)
 
             if not submission_status:
                 logging.error("[SUBMIT ERROR] Submission confirmation timed out.")
